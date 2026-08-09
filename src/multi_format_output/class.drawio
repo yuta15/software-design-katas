@@ -1,0 +1,170 @@
+<mxfile host="65bd71144e">
+    <diagram id="multi-format-output-classes" name="Page-1">
+        <mxGraphModel dx="1768" dy="1063" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1000" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry width="1500" height="960" as="geometry"/>
+                </mxCell>
+                <mxCell id="title" value="Multi-format Output クラス図" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="20" width="420" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="subtitle" value="主要クラスと依存関係（Input、Format系データクラス、DI設定クラスは省略）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="58" width="620" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="usecase" value="&lt;b&gt;Usecase&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;- output_set_factory&lt;br&gt;- new_entity_factory&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ execute(input): None&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="100" width="210" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="factory-port" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;OutputSetFactory&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ create(format_type, data)&lt;br&gt;&amp;nbsp;&amp;nbsp;: OutputterPort&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="300" width="220" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="formatter-port" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;FormatterPort&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;- data: Data&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ format(): Format&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="300" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="outputter-port" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;OutputterPort&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;- formatter: FormatterPort&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ output(): None&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="870" y="300" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="factory-impl" value="&lt;b&gt;ImpleOutputSetFactory&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;- dependencies&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ create(format_type, data)&lt;br&gt;&amp;nbsp;&amp;nbsp;: OutputterPort&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="570" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="json-formatter" value="&lt;b&gt;JsonDataFormatter&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ format(): JsonFormat&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="570" width="180" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="csv-formatter" value="&lt;b&gt;CSVDataFormatter&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ format(): CSVFormat&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="680" width="180" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="tsv-formatter" value="&lt;b&gt;TSVDataFormatter&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ format(): TSVFormat&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="790" width="180" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="json-outputter" value="&lt;b&gt;JsonOutputter&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ output(): None&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="570" width="180" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="csv-outputter" value="&lt;b&gt;CsvOutputter&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ output(): None&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="680" width="180" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="tsv-outputter" value="&lt;b&gt;TsvOutputter&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ output(): None&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="790" width="180" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="new-entity-factory" value="&lt;b&gt;NewEntityFactory&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;- id_generater: IdGenerater&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ create(**kwargs): Data&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="100" width="230" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="data" value="&lt;b&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;br&gt;Data&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;User / Dog / Car&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="300" width="230" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="id-port" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;IdGenerater&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ generate()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="500" width="230" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="uuid-generator" value="&lt;b&gt;UuidIdGenerater&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&quot;text-align:left;padding-left:8px;&quot;&gt;+ generate(): UUID&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;verticalAlign=top;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="700" width="230" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="usecase-to-factory" value="依存" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=0;exitY=0.5;entryX=1;entryY=0;" parent="1" source="usecase" target="factory-port" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="usecase-to-entity-factory" value="依存" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;" parent="1" source="usecase" target="new-entity-factory" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="usecase-to-outputter" value="output()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=0.35;exitY=1;entryX=0.5;entryY=0;" parent="1" source="usecase" target="outputter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="factory-realization" value="implements" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;" parent="1" source="factory-impl" target="factory-port" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="json-formatter-realization" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="json-formatter" target="formatter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="350" y="613"/>
+                            <mxPoint x="350" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="csv-formatter-realization" value="implements" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="csv-formatter" target="formatter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="330" y="723"/>
+                            <mxPoint x="330" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="tsv-formatter-realization" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="tsv-formatter" target="formatter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="833"/>
+                            <mxPoint x="310" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="json-outputter-realization" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" parent="1" source="json-outputter" target="outputter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1120" y="613"/>
+                            <mxPoint x="1120" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="csv-outputter-realization" value="implements" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" parent="1" source="csv-outputter" target="outputter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1140" y="723"/>
+                            <mxPoint x="1140" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="tsv-outputter-realization" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" parent="1" source="tsv-outputter" target="outputter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1160" y="833"/>
+                            <mxPoint x="1160" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="outputter-to-formatter-port" value="formatter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#000000;fontSize=11;" parent="1" source="outputter-port" target="formatter-port" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="formatter-to-data" value="format対象" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=1;exitY=1;entryX=0;entryY=1;" parent="1" source="formatter-port" target="data" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="730" y="460"/>
+                            <mxPoint x="1180" y="460"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="factory-to-json-outputter" value="JSONを選択" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" parent="1" source="factory-impl" target="json-formatter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="factory-to-csv-outputter" value="CSVを選択" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="factory-impl" target="csv-formatter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="factory-to-tsv-outputter" value="TSVを選択" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" parent="1" source="factory-impl" target="tsv-formatter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="json-pair" value="組み合わせ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#000000;fontSize=10;" parent="1" source="json-outputter" target="json-formatter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="csv-pair" value="組み合わせ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#000000;fontSize=10;" parent="1" source="csv-outputter" target="csv-formatter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="tsv-pair" value="組み合わせ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#000000;fontSize=10;" parent="1" source="tsv-outputter" target="tsv-formatter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="entity-factory-to-data" value="create" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;" parent="1" source="new-entity-factory" target="data" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="entity-factory-to-id" value="依存" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" parent="1" source="new-entity-factory" target="id-port" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1470" y="165"/>
+                            <mxPoint x="1470" y="548"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="uuid-realization" value="implements" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;strokeColor=#000000;fontSize=11;" parent="1" source="uuid-generator" target="id-port" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend" value="&lt;b&gt;凡例&lt;/b&gt;　破線＋白三角: implements　　破線＋開矢印: 依存　　実線: 保持・組み合わせ" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontColor=#444444;fontSize=11;align=left;spacingLeft=10;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="910" width="1400" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
