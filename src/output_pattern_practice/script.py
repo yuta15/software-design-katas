@@ -17,7 +17,7 @@ def main():
     new_entity_factory = NewEntityFactory(id_generater=UuidIdGenerater())
     uc = Usecase(output_set_factory=output_set_factory, new_entity_factory=new_entity_factory)
 
-    input = Input(data={"name": "michi", "age": 26}, output_type="TSV")
+    input = Input(data={"name": "michi", "age": 26}, output_type="JSON")
     uc.execute(input=input)
 
 
