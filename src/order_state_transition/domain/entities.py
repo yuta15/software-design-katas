@@ -1,28 +1,28 @@
-from abc import abstractmethod, ABC
-from datetime import datetime, timezone
+from abc import ABC, abstractmethod
+from datetime import UTC, datetime
 from uuid import UUID
+from typing import Self
 
 from .value_objects import ItemNameVo, PriceVo
 
 
 class Order:
-    def __init__(self, *, id, order_items:list[OrderItem], price:PriceVo, order_status:OrderStatus):
-        self._id = id
-        self._order_items:list[OrderItem] = order_items
-        self._price:PriceVo = price
-        self._order_status:OrderStatus = order_status
+    def __init__(self, *, id:UUID, order_items:tuple[OrderItem], order_status:OrderStatus):
+        self._id:UUID = id
+        self._order_items: tuple[OrderItem] = order_items
+        self._order_status: OrderStatus = order_status
 
     @property
     def id(self) -> UUID:
         return self._id
 
     @property
-    def order_items(self) -> list[OrderItem]:
+    def order_items(self) -> tuple[OrderItem]:
         return self._order_items
 
     @property
     def price(self) -> PriceVo:
-        return self._price
+        return sum([item.item_price.value for item in self._order_items])
 
     @property
     def order_status(self) -> OrderStatus:
@@ -31,9 +31,9 @@ class Order:
     def __setattr__(self, name, value):
         if name == "_id" and getattr(self, "_id", None) is not None:
             raise AttributeError("Change entity ID is not permitted")
-        object.__setattr__(name, value)
+        object.__setattr__(self, name, value)
 
-    def __eq__(self, value:object) -> bool:
+    def __eq__(self, value: object) -> bool:
         if isinstance(value, Order):
             return value.id == self._id
         return False
@@ -41,17 +41,27 @@ class Order:
     def __hash__(self):
         return hash(self._id)
 
-    def add_item(self, item:OrderItem) -> None:
-        if not isinstance(item, OrderItem):
-            raise AttributeError("Invalid item value")
-        new_items = [*self._order_items, item]
-        new_price = self._price.value + item.item_price.value
-        self._order_items = new_items
-        self._price = PriceVo(value=new_price)
+    @classmethod
+    def create(cls, id:UUID) -> Self:
+        return cls(id=id, order_items=(), order_status=Draft())
 
-    def remove_item(self, item:OrderItem) -> None:
+    @classmethod
+    def reconstruct(cls, id:UUID, order_items:list[OrderItem], order_status:OrderStatus) -> Self:
+        return cls(
+            id=id,
+            order_items=order_items,
+            order_status=order_status
+        )
+
+    def add_item(self, item: OrderItem) -> None:
         if not isinstance(item, OrderItem):
-            raise AttributeError("Invalid item value")
+            raise TypeError("Invalid item value")
+
+        self._order_items = (*self._order_items, item)
+
+    def remove_item(self, item: OrderItem) -> None:
+        if not isinstance(item, OrderItem):
+            raise TypeError("Invalid item value")
 
         if not item in self.order_items:
             raise AttributeError("Not include specified item")
@@ -61,23 +71,20 @@ class Order:
             if exist_item != item:
                 new_items.append(exist_item)
 
-        new_price = self._price.value - item.item_price.value
-
-        self._order_items = new_items
-        self._price = PriceVo(value=new_price)
+        self._order_items = tuple(new_items)
 
     def pay(self) -> None:
-        self._order_status.pay()
+        self._order_status = self._order_status.pay()
 
     def cancel(self) -> None:
-        self._order_status.cancel()
+        self._order_status = self._order_status.cancel()
 
     def ship(self) -> None:
-        self._order_status.ship()
+        self._order_status = self._order_status.ship()
 
 
 class OrderItem:
-    def __init__(self, *, item_name:ItemNameVo, item_price:PriceVo):
+    def __init__(self, *, item_name: ItemNameVo, item_price: PriceVo):
         self._item_name: ItemNameVo = item_name
         self._item_price: PriceVo = item_price
 
@@ -92,20 +99,20 @@ class OrderItem:
 
 class OrderStatus(ABC):
     def __init__(self):
-        self._changed_at = datetime.now(timezone.utc)
+        self._changed_at = datetime.now(UTC)
 
     @property
     def changed_at(self) -> datetime:
         return self._changed_at
 
     @abstractmethod
-    def pay(self) -> OrderStatus:...
+    def pay(self) -> OrderStatus: ...
 
     @abstractmethod
-    def cancel(self) -> OrderStatus:...
+    def cancel(self) -> OrderStatus: ...
 
     @abstractmethod
-    def ship(self) -> OrderStatus:...
+    def ship(self) -> OrderStatus: ...
 
 
 class Canceled(OrderStatus):
@@ -150,4 +157,3 @@ class Draft(OrderStatus):
 
     def cancel(self):
         return Canceled()
-        

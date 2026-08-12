@@ -1,12 +1,13 @@
-import json
 import csv
+import json
 
 from application import OutputterPort
-from .formatter import JsonDataFormatter, TSVDataFormatter, CSVDataFormatter
+
+from .formatter import CSVDataFormatter, JsonDataFormatter, TSVDataFormatter
 
 
 class JsonOutputter(OutputterPort):
-    def __init__(self, formatter:JsonDataFormatter):
+    def __init__(self, formatter: JsonDataFormatter):
         super().__init__(formatter)
 
     def output(self):
@@ -16,7 +17,7 @@ class JsonOutputter(OutputterPort):
 
 
 class TsvOutputter(OutputterPort):
-    def __init__(self, formatter:TSVDataFormatter):
+    def __init__(self, formatter: TSVDataFormatter):
         super().__init__(formatter)
 
     def output(self):
@@ -27,7 +28,7 @@ class TsvOutputter(OutputterPort):
 
 
 class CsvOutputter(OutputterPort):
-    def __init__(self, formatter:CSVDataFormatter):
+    def __init__(self, formatter: CSVDataFormatter):
         super().__init__(formatter)
 
     def output(self):

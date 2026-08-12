@@ -1,23 +1,21 @@
-from uuid import UUID
-
 from dataclasses import dataclass
-
+from uuid import UUID
 
 
 @dataclass
 class Data:
-    id:UUID
+    id: UUID
 
 
 @dataclass
 class User(Data):
     name: str
-    age:int
+    age: int
 
 
 @dataclass
 class Dog(Data):
-    name:str
+    name: str
     age: int
     kind: str
 
@@ -26,4 +24,3 @@ class Dog(Data):
 class Car(Data):
     kind: str
     maker: str
-

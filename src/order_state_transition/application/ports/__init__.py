@@ -1,6 +1,4 @@
 from .ports import OrderRepositoryPort
 
 
-__all__ = [
-    "OrderRepositoryPort"
-]
+__all__ = ["OrderRepositoryPort"]

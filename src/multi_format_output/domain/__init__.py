@@ -1,13 +1,6 @@
-from domain.data import Data, Dog, User, Car
-from .service import NewEntityFactory
+from domain.data import Car, Data, Dog, User
+
 from .ports import IdGenerater
+from .service import NewEntityFactory
 
-
-__all__ = [
-    "Data",
-    "Dog",
-    "User",
-    "Car",
-    "NewEntityFactory",
-    "IdGenerater"
-]
+__all__ = ["Car", "Data", "Dog", "IdGenerater", "NewEntityFactory", "User"]

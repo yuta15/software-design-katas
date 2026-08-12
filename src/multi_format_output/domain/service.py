@@ -1,4 +1,4 @@
-from .data import User, Dog, Car, Data
+from .data import Car, Data, Dog, User
 
 
 class NewEntityFactory:
@@ -9,11 +9,26 @@ class NewEntityFactory:
         if kwargs is None:
             raise ValueError("Invalid value")
 
-        if kwargs.get("name") is not None and kwargs.get("age") is not None and kwargs.get("kind"):
-            return Dog(id=self._id_generater.generate(), name=kwargs["name"], age=kwargs["age"], kind=kwargs["kind"])
+        if (
+            kwargs.get("name") is not None
+            and kwargs.get("age") is not None
+            and kwargs.get("kind")
+        ):
+            return Dog(
+                id=self._id_generater.generate(),
+                name=kwargs["name"],
+                age=kwargs["age"],
+                kind=kwargs["kind"],
+            )
 
         elif kwargs.get("name") is not None and kwargs.get("age") is not None:
-            return User(id=self._id_generater.generate(), name=kwargs["name"], age=kwargs["age"])
+            return User(
+                id=self._id_generater.generate(), name=kwargs["name"], age=kwargs["age"]
+            )
 
         elif kwargs.get("kind") is not None and kwargs.get("maker") is not None:
-            return Car(id=self._id_generater.generate(), kind=kwargs["kind"], maker=kwargs["maker"])
+            return Car(
+                id=self._id_generater.generate(),
+                kind=kwargs["kind"],
+                maker=kwargs["maker"],
+            )

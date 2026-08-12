@@ -1,17 +1,13 @@
-from typing import Generic, TypeVar
-from enum import Enum
 from dataclasses import dataclass
-
-
-FormatDataType = TypeVar("FormatData")
+from enum import Enum
 
 
 class DataFormatType(Enum):
-    TSV="TSV"
-    JSON="JSON"
-    CSV="CSV"
+    TSV = "TSV"
+    JSON = "JSON"
+    CSV = "CSV"
 
 
 @dataclass(frozen=True)
-class Format(Generic[FormatDataType]):
-    data:FormatDataType
+class Format[T]:
+    data: T

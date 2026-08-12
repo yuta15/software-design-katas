@@ -1,20 +1,20 @@
-
 from abc import ABC, abstractmethod
 
 from domain import Data
-from .models import Format, DataFormatType
+
+from .models import DataFormatType, Format
 
 
 class FormatterPort(ABC):
-    def __init__(self, data:Data):
+    def __init__(self, data: Data):
         self.data = data
 
     @abstractmethod
-    def format(self) -> Format:...
+    def format(self) -> Format: ...
 
 
 class OutputterPort(ABC):
-    def __init__(self, formatter:FormatterPort):
+    def __init__(self, formatter: FormatterPort):
         self._formatter = formatter
 
     @abstractmethod
@@ -23,4 +23,4 @@ class OutputterPort(ABC):
 
 class OutputSetFactory(ABC):
     @abstractmethod
-    def create(self, format_type: DataFormatType, data:Data) -> OutputterPort:...
+    def create(self, format_type: DataFormatType, data: Data) -> OutputterPort: ...

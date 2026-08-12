@@ -1,6 +1,8 @@
 from dataclasses import asdict
+
 from application import FormatterPort
-from .models import JsonFormat, CSVFormat, TSVFormat
+
+from .models import CSVFormat, JsonFormat, TSVFormat
 
 
 class CSVDataFormatter(FormatterPort):
@@ -15,7 +17,7 @@ class CSVDataFormatter(FormatterPort):
             str_key = str(key)
             str_value = str(value)
             headers.append(str_key)
-            values.append(str_value)               
+            values.append(str_value)
         return CSVFormat([headers, values])
 
 
