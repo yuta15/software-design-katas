@@ -1,5 +1,4 @@
-from .entities import Order, OrderStatus, OrderItem, Draft, Canceled, Shipped, Paid
+from .entities import Canceled, Draft, Order, OrderItem, OrderStatus, Paid, Shipped
 from .value_objects import ItemNameVo, PriceVo
 
-
-__all__ = ["Order", "OrderStatus", "OrderItem", "ItemNameVo", "PriceVo", "Draft", "Canceled", "Shipped", "Paid"]
+__all__ = ["Canceled", "Draft", "ItemNameVo", "Order", "OrderItem", "OrderStatus", "Paid", "PriceVo", "Shipped"]

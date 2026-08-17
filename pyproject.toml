@@ -6,6 +6,94 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "python-dotenv>=1.2.2",
+    "rich>=15.0.0",
     "ruff>=0.16.2",
     "sqlmodel>=0.0.39",
+]
+
+[tool.ruff]
+target-version = "py314"
+line-length = 120
+src = ["src"]
+force-exclude = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "BLE", "UP", "RUF"]
+ignore = ["E501", "SIM", "C4", "PIE", "RET", "FURB"]
+fixable = ["ALL"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "batch_progress_observer",
+    "http_client_decorator",
+    "multi_format_output",
+    "order_state_transition",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+
+[tool.pyright]
+include = ["src"]
+pythonVersion = "3.14"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
+
+[tool.importlinter]
+root_packages = [
+    "batch_progress_observer",
+    "http_client_decorator",
+    "multi_format_output",
+    "order_state_transition",
+]
+
+[[tool.importlinter.contracts]]
+name = "Sample packages are independent"
+type = "independence"
+modules = [
+    "batch_progress_observer",
+    "http_client_decorator",
+    "multi_format_output",
+    "order_state_transition",
+]
+
+[[tool.importlinter.contracts]]
+name = "Batch progress observer layers"
+type = "layers"
+layers = [
+    "batch_progress_observer.infra",
+    "batch_progress_observer.application",
+    "batch_progress_observer.domain",
+]
+
+[[tool.importlinter.contracts]]
+name = "Multi-format output layers"
+type = "layers"
+layers = [
+    "multi_format_output.script",
+    "multi_format_output.infra",
+    "multi_format_output.application",
+    "multi_format_output.domain",
+]
+
+[[tool.importlinter.contracts]]
+name = "Order state transition layers"
+type = "layers"
+layers = [
+    "order_state_transition.scripts",
+    "order_state_transition.infra",
+    "order_state_transition.application",
+    "order_state_transition.domain",
+]
+
+[dependency-groups]
+dev = [
+    "import-linter>=2.13",
+    "pre-commit>=4.6.2",
+    "pyright>=1.1.411",
 ]

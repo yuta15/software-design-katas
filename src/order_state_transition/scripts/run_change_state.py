@@ -1,9 +1,11 @@
-from uuid import UUID
 import os
+from uuid import UUID
+
 from dotenv import load_dotenv
-from sqlmodel import create_engine, Session
-from ..infra.order_repository import OrderRepository
+from sqlmodel import Session, create_engine
+
 from ..application.usecase import ChangeOrderState
+from ..infra.order_repository import OrderRepository
 
 
 def main():

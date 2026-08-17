@@ -20,15 +20,9 @@ class ImpleOutputSetFactory(OutputSetFactory):
 
     def create(self, format_type: DataFormatType, data: Data) -> OutputterPort:
         if format_type == DataFormatType.JSON:
-            return self._dependencies.json_outputter(
-                formatter=self._dependencies.json_formatter(data=data)
-            )
+            return self._dependencies.json_outputter(formatter=self._dependencies.json_formatter(data=data))
         elif format_type == DataFormatType.CSV:
-            return self._dependencies.csv_outputter(
-                formatter=self._dependencies.csv_formatter(data=data)
-            )
+            return self._dependencies.csv_outputter(formatter=self._dependencies.csv_formatter(data=data))
         elif format_type == DataFormatType.TSV:
-            return self._dependencies.tsv_outputter(
-                formatter=self._dependencies.tsv_formatter(data=data)
-            )
+            return self._dependencies.tsv_outputter(formatter=self._dependencies.tsv_formatter(data=data))
         raise ValueError("Invalid value")

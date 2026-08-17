@@ -1,4 +1,4 @@
-from .request import RetryRequest, CacheRequest, ExecuteRequest, FailedRequest, LogRequest
+from .request import CacheRequest, ExecuteRequest, LogRequest, RetryRequest
 
 
 def main():
@@ -26,6 +26,7 @@ def main():
     for url in urls:
         text = request.get(url=url)
         print(text)
+
 
 if __name__ == "__main__":
     main()

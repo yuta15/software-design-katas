@@ -12,15 +12,18 @@ class OrderStatus(Enum):
 
 
 class Order(SQLModel, table=True):
-    __tablename__ = "orders"
+    __tablename__ = "orders"  # pyright: ignore[reportAssignmentType]
 
     id: UUID = Field(primary_key=True)
     order_status: OrderStatus
 
 
 class OrderItem(SQLModel, table=True):
-    __tablename__ = "order_items"
+    __tablename__ = "order_items"  # pyright: ignore[reportAssignmentType]
 
-    order_id: UUID = Field(foreign_key="orders.id", primary_key=True,)
+    order_id: UUID = Field(
+        foreign_key="orders.id",
+        primary_key=True,
+    )
     item_name: str = Field(primary_key=True)
     item_price: int

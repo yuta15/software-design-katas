@@ -25,3 +25,12 @@ src/
 - その他のファイル: テーマに沿った実装コード
 
 各テーマの詳細については、それぞれのディレクトリ配下にある`README.md`を確認してください。クラス図で全体の構造と依存関係を把握してからコードを読むと、実装の意図を追いやすくなります。
+
+## 学習テーマ
+
+| 項番 | 名称 | テーマ |
+| ---: | --- | --- |
+| 1 | [Multi-format Output](./src/multi_format_output/README.md) | 複数形式へのデータ出力とClean Architecture |
+| 2 | [Order State Transition](./src/order_state_transition/README.md) | 注文の状態遷移とStateパターン |
+| 3 | [HTTP Client Decorator](./src/http_client_decorator/README.md) | HTTPクライアントへの機能追加とDecoratorパターン |
+| 4 | [Invoice Batch Observer](./src/batch_progress_observer/README.md) | 請求書一括発行とObserverパターン |

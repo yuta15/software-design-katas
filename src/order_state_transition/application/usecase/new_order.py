@@ -1,10 +1,11 @@
 from uuid import uuid7
-from ..ports import OrderRepositoryPort
+
 from ...domain import Order
+from ..ports import OrderRepositoryPort
 
 
 class NewOrder:
-    def __init__(self, repository:OrderRepositoryPort):
+    def __init__(self, repository: OrderRepositoryPort):
         self._repository = repository
 
     def exec(self) -> None:
